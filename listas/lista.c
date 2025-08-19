@@ -5,7 +5,7 @@
 
 
 listas* crear_lista(){
-    listas* lista = (listas*)malloc(sizeof(Nodo));
+    listas* lista = (listas*)malloc(sizeof(listas));
     lista->cabeza = NULL;
     lista->longui = 0;
     return lista;
@@ -49,6 +49,7 @@ void inset_ulti(listas* lista,int valor){
         }
 
         aux->next=nodo;
+        lista->longui++;
 
     }
 
@@ -159,6 +160,7 @@ void vaciar_ulti(listas* lista){
 
         free(lista->cabeza);
         lista->cabeza = NULL;
+        lista->longui--;
 
     }else {
         aux=lista->cabeza;
@@ -170,6 +172,7 @@ void vaciar_ulti(listas* lista){
 
         free(aux->next);
         aux->next=NULL;
+        lista->longui--;
 
     }
 }
@@ -202,7 +205,7 @@ void vaciar_posi(listas* lista,int pos){
 
         }
 
-    }else if(pos >= lista->longui){
+    }else if(pos > lista->longui){
         vaciar_one(lista);
     }
 }
@@ -298,7 +301,6 @@ void impri_lista(listas* lista){
         aux=aux->next;
 
     }
-    free(aux);
 }
 
 //elimina toda la lista
@@ -313,5 +315,7 @@ void elimi_lista(listas* lista){
         aux=lista->cabeza;
 
     }
+
+    lista->longui = 0;
 
 }
