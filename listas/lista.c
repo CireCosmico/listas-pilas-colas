@@ -7,7 +7,6 @@
 listas* crear_lista(){
     listas* lista = (listas*)malloc(sizeof(Nodo));
     lista->cabeza = NULL;
-    lista->final = NULL;
     lista->longui = 0;
     return lista;
 }
@@ -25,22 +24,9 @@ void inset_one(listas* lista,int valor){
 
     Nodo* nodo = crear_nodo(valor);
 
-    if(lista->cabeza==NULL){
-
-        nodo->next=lista->cabeza;
-        lista->final=nodo;
-        lista->cabeza = nodo;
-        lista->longui++;
-
-    }else{
-
-        nodo->next=lista->cabeza;
-        lista->cabeza = nodo;
-        lista->longui++;
-
-    }
-
-
+    nodo->next=lista->cabeza;
+    lista->cabeza = nodo;
+    lista->longui++;
 
 }
 
@@ -48,19 +34,21 @@ void inset_one(listas* lista,int valor){
 
 void inset_ulti(listas* lista,int valor){
     Nodo* nodo = crear_nodo(valor);
+    Nodo* aux = lista->cabeza;
 
     if (lista->cabeza==NULL) {
 
-        nodo->next=lista->cabeza;
-        lista->final = nodo;
-        lista->cabeza = nodo;
-        lista->longui++;
+        inset_one(lista,valor );
 
     }else {
 
-        lista->final->next=nodo;
-        lista->final=lista->final->next;
-        lista->longui++;
+        while (aux->next!=NULL) {
+
+            aux=aux->next;
+
+        }
+
+        aux->next=nodo;
 
     }
 
@@ -69,19 +57,22 @@ void inset_ulti(listas* lista,int valor){
 //introduce en la posicion elejida
 
 void inset_posi(listas* lista,int valor, int pos){
+    Nodo* nodo = crear_nodo(valor);
+    Nodo* aux;
+    int i;
 
-    if(pos<=lista->longui+1 && pos>0){
+    aux=lista->cabeza;
+
+    if(lista->cabeza == NULL){
+        inset_one(lista,valor );
+
+    }else if(pos <= lista->longui+1 && pos>0){
 
         if(pos==1){
             inset_one(lista,valor );
         }else if(pos == lista->longui+1){
             inset_ulti(lista,valor );
         }else {
-            Nodo* nodo = crear_nodo(valor);
-            Nodo* aux;
-            int i;
-
-            aux=lista->cabeza;
 
             for(i=1;i<pos-1;i++){
 
@@ -94,9 +85,9 @@ void inset_posi(listas* lista,int valor, int pos){
             lista->longui++;
 
         }
-    }else if(lista->cabeza==NULL && pos>0){
+    }else if(pos >= lista->longui+2){
 
-        inset_one(lista,valor );
+        inset_ulti(lista,valor);
 
     }
 }
@@ -179,7 +170,6 @@ void vaciar_ulti(listas* lista){
 
         free(aux->next);
         aux->next=NULL;
-        lista->final=aux;
 
     }
 }
@@ -188,7 +178,7 @@ void vaciar_ulti(listas* lista){
 
 void vaciar_posi(listas* lista,int pos){
 
-    if(pos<=lista->longui && pos>0){
+    if(pos <= lista->longui && pos>0){
 
         if(pos==1){
             vaciar_one(lista);
@@ -211,6 +201,9 @@ void vaciar_posi(listas* lista,int pos){
             lista->longui--;
 
         }
+
+    }else if(pos >= lista->longui){
+        vaciar_one(lista);
     }
 }
 

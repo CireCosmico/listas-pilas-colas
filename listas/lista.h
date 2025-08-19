@@ -14,7 +14,6 @@ typedef struct Nodo{
 typedef struct listas{
 
     Nodo* cabeza;
-    Nodo* final;
     int longui;
 
 }listas;
