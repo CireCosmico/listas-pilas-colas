@@ -19,6 +19,8 @@ Nodo* crear_nodo(int info){
     return nodo;
 }
 
+//introduce en la primera posicion
+
 void inset_one(listas* lista,int valor){
 
     Nodo* nodo = crear_nodo(valor);
@@ -42,6 +44,8 @@ void inset_one(listas* lista,int valor){
 
 }
 
+//introduce en la ultima posicion
+
 void inset_ulti(listas* lista,int valor){
     Nodo* nodo = crear_nodo(valor);
 
@@ -61,6 +65,8 @@ void inset_ulti(listas* lista,int valor){
     }
 
 }
+
+//introduce en la posicion elejida
 
 void inset_posi(listas* lista,int valor, int pos){
 
@@ -95,6 +101,8 @@ void inset_posi(listas* lista,int valor, int pos){
     }
 }
 
+// intercambia 2 posiciones
+
 void spaw_lis(listas* lista,int pos1,int pos2){
     int A,B,i;
     Nodo* aux;
@@ -119,6 +127,8 @@ void spaw_lis(listas* lista,int pos1,int pos2){
 
 }
 
+//veltea la lista A y la copia en B
+
 listas* voltear_lista(listas* Orlista,listas* Inlista){
     Nodo* aux;
     aux=Orlista->cabeza;
@@ -134,6 +144,8 @@ listas* voltear_lista(listas* Orlista,listas* Inlista){
 
 }
 
+// borra en la primera posicion
+
 void vaciar_one(listas* lista){
     Nodo* aux;
 
@@ -146,6 +158,8 @@ void vaciar_one(listas* lista){
 
     }
 }
+
+// borra en la ultima posicion
 
 void vaciar_ulti(listas* lista){
     Nodo* aux;
@@ -168,9 +182,9 @@ void vaciar_ulti(listas* lista){
         lista->final=aux;
 
     }
-
-
 }
+
+// borra en la posicion elgida
 
 void vaciar_posi(listas* lista,int pos){
 
@@ -197,11 +211,10 @@ void vaciar_posi(listas* lista,int pos){
             lista->longui--;
 
         }
-
-
     }
-
 }
+
+// verifica si es vacia la lista
 
 bool es_vacia(listas* lista){
     bool es;
@@ -218,6 +231,8 @@ bool es_vacia(listas* lista){
     return es;
 }
 
+//te dice la longuitu de la lista
+
 int lon_lista(listas* lista){
     int lon;
 
@@ -225,6 +240,8 @@ int lon_lista(listas* lista){
 
     return lon;
 }
+
+//te dice si un elemento esta en la lista devolviendo posicion y si no esta devuelve -1
 
 int esta_en_lista(listas* lista,int dato){
     int esta = -1,cont = 0;
@@ -250,6 +267,8 @@ int esta_en_lista(listas* lista,int dato){
     return esta;
 }
 
+//dada una posicion devuelve el elemento de se posicion, si no este posicion devuelve -1
+
 int oten_ele_lista(listas* lista,int pos){
     int dato = -1,i;
     Nodo* aux;
@@ -271,6 +290,7 @@ int oten_ele_lista(listas* lista,int pos){
     return dato;
 }
 
+//imprime toda la lista
 
 void impri_lista(listas* lista){
     Nodo* aux;
@@ -287,6 +307,8 @@ void impri_lista(listas* lista){
     }
     free(aux);
 }
+
+//elimina toda la lista
 
 void elimi_lista(listas* lista){
     Nodo* aux;
