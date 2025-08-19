@@ -17,7 +17,7 @@ int main(){
     //vacia_one(lista);
     //printf("el valor de mi lista %d de longuitu %d \n",lista->cabeza->dato,lista->longui);
     //vaciar_one(lista);
-    bool a=es_vacia(lista);
+    bool a=es_vacia_lista(lista);
     /*if(a){
         printf("es vacia\n");
     }else {

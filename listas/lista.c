@@ -216,7 +216,7 @@ void vaciar_posi(listas* lista,int pos){
 
 // verifica si es vacia la lista
 
-bool es_vacia(listas* lista){
+bool es_vacia_lista(listas* lista){
     bool es;
     if(lista->cabeza==NULL){
 
@@ -312,16 +312,13 @@ void impri_lista(listas* lista){
 
 void elimi_lista(listas* lista){
     Nodo* aux;
-    Nodo* aux2;
     aux=lista->cabeza;
 
     while (aux!=NULL) {
-        aux2=aux;
-        aux=aux2->next;
-        free(aux2);
+        lista->cabeza=aux->next;
+        free(aux);
+        aux=lista->cabeza;
 
     }
-    free(aux);
-    free(lista);
 
 }
