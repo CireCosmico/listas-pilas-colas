@@ -104,7 +104,7 @@ void spaw_lis(listas* lista,int pos1,int pos2){
     int A,B,i;
     Nodo* aux;
 
-    if( pos1 <= 1 && pos2 <= 1 && pos1 >= lista->longui && pos2 >= lista->longui){
+    if( pos1 >= 1 && pos2 >= 1 && pos1 <= lista->longui && pos2 <= lista->longui){
 
         A = oten_ele_lista(lista,pos1 );
         B = oten_ele_lista(lista,pos2 );
