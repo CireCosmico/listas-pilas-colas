@@ -60,25 +60,40 @@ void inset_ulti(listas* lista,int valor){
 void inset_posi(listas* lista,int valor, int pos){
     Nodo* nodo = crear_nodo(valor);
     Nodo* aux;
-    int i = 0;
+    int i;
 
     aux=lista->cabeza;
 
     if(lista->cabeza == NULL){
+
         inset_one(lista,valor );
 
-    }else {
+    }else if(pos <= lista->longui+1 && pos>0){
 
-       while ( i < pos && aux->next != NULL) {
+        if(pos==1){
 
-           aux = aux->next;
-           i++;
+            inset_one(lista,valor );
+
+        }else if(pos == lista->longui+1){
+
+            inset_ulti(lista,valor );
+
+        }else {
+
+            for(i=1;i<pos-1;i++){
+
+                aux=aux->next;
+            }
+
+            nodo->next=aux->next;
+            aux->next=nodo;
+            lista->longui++;
 
         }
 
-        nodo->next=aux->next;
-        aux->next=nodo;
-        lista->longui++;
+    }else if(pos >= lista->longui+2){
+
+        inset_ulti(lista,valor);
 
     }
 }
@@ -86,10 +101,10 @@ void inset_posi(listas* lista,int valor, int pos){
 // intercambia 2 posiciones
 
 void spaw_lis(listas* lista,int pos1,int pos2){
-    int* A,*B,i;
+    int A,B,i;
     Nodo* aux;
 
-    if( pos1 <= 1 || pos2 <= 1 || pos1 >= lista->longui || pos2 >= lista->longui){
+    if( pos1 <= 1 && pos2 <= 1 && pos1 >= lista->longui && pos2 >= lista->longui){
 
         A = oten_ele_lista(lista,pos1 );
         B = oten_ele_lista(lista,pos2 );
@@ -100,14 +115,14 @@ void spaw_lis(listas* lista,int pos1,int pos2){
             aux=aux->next;
         }
 
-        aux->dato=(*B);
+        aux->dato=B;
         aux=lista->cabeza;
 
         for(i=1;i<pos2;i++){
             aux=aux->next;
         }
 
-        aux->dato=(*A);
+        aux->dato=A;
 
     }
 }
@@ -178,33 +193,43 @@ void vaciar_ulti(listas* lista){
 // borra en la posicion elgida
 
 void vaciar_posi(listas* lista,int pos){
-    Nodo* aux,*aux2;
-    int i;
 
-    aux = lista->cabeza;
+    if(pos <= lista->longui && pos>0){
 
-    if(lista->cabeza != NULL){
-
-        if(pos == 0){
+        if(pos==1){
 
             vaciar_one(lista);
 
-        }else if (pos <= lista->longui){
+        }else if(pos==lista->longui){
 
-            while ( i < pos-1 && aux->next != NULL) {
+            vaciar_ulti(lista);
 
-                aux = aux->next;
-                i++;
+        }else {
+
+            Nodo* aux,*aux2;
+            int i;
+
+            aux=lista->cabeza;
+
+            for(i=1;i<pos-1;i++){
+
+                aux=aux->next;
 
             }
 
-            aux2 = aux->next;
-            aux->next = aux2->next;
+            aux2=aux->next;
+            aux->next=aux2->next;
             free(aux2);
             lista->longui--;
 
         }
+
+    }else if(pos > lista->longui){
+
+        vaciar_one(lista);
+
     }
+
 }
 
 // verifica si es vacia la lista
@@ -242,14 +267,15 @@ int esta_en_lista(listas* lista,int dato){
 
     aux=lista->cabeza;
 
-    while (aux != NULL) {
+    while (aux!=NULL) {
 
         cont++;
-        if(dato == aux->dato){
 
-            esta = cont;
-            aux = NULL;
+        if(dato==aux->dato){
 
+            esta=cont;
+
+            aux=NULL;  // Esto rompe el bucle
         }else {
 
             aux=aux->next;
@@ -257,32 +283,33 @@ int esta_en_lista(listas* lista,int dato){
         }
 
     }
+
     return esta;
+
 }
 
 //dada una posicion devuelve el elemento de se posicion, si no este posicion devuelve -1
 
-int* oten_ele_lista(listas* lista,int pos){
-    int* dato = NULL,i;
+int oten_ele_lista(listas* lista,int pos){
+    int dato = -1,i;
     Nodo* aux;
 
     aux=lista->cabeza;
 
-    if(lista->cabeza != NULL){
+    if(pos<=lista->longui && pos>0){
 
-        while ( i < pos && aux->next != NULL) {
+        for(i=1;i<pos;i++){
 
-            aux = aux->next;
-            i++;
+            aux=aux->next;
 
         }
 
-        if(i==pos){
-            (*dato)=aux->dato;
-        }
+        dato=aux->dato;
+
     }
 
     return dato;
+
 }
 
 //imprime toda la lista

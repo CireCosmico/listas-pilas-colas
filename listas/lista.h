@@ -31,7 +31,7 @@ void vaciar_posi(listas* lista,int pos);
 bool es_vacia_lista(listas* lista);
 int lon_lista(listas* lista);
 int esta_en_lista(listas* lista,int dato);
-int* oten_ele_lista(listas* lista,int pos);
+int oten_ele_lista(listas* lista,int pos);
 void impri_lista(listas* lista);
 void elimi_lista(listas* lista);
 
