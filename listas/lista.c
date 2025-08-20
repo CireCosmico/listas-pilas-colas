@@ -60,35 +60,25 @@ void inset_ulti(listas* lista,int valor){
 void inset_posi(listas* lista,int valor, int pos){
     Nodo* nodo = crear_nodo(valor);
     Nodo* aux;
-    int i;
+    int i = 0;
 
     aux=lista->cabeza;
 
     if(lista->cabeza == NULL){
         inset_one(lista,valor );
 
-    }else if(pos <= lista->longui+1 && pos>0){
+    }else {
 
-        if(pos==1){
-            inset_one(lista,valor );
-        }else if(pos == lista->longui+1){
-            inset_ulti(lista,valor );
-        }else {
+       while ( i < pos && aux->next != NULL) {
 
-            for(i=1;i<pos-1;i++){
-
-                aux=aux->next;
-
-            }
-
-            nodo->next=aux->next;
-            aux->next=nodo;
-            lista->longui++;
+           aux = aux->next;
+           i++;
 
         }
-    }else if(pos >= lista->longui+2){
 
-        inset_ulti(lista,valor);
+        nodo->next=aux->next;
+        aux->next=nodo;
+        lista->longui++;
 
     }
 }
@@ -96,27 +86,30 @@ void inset_posi(listas* lista,int valor, int pos){
 // intercambia 2 posiciones
 
 void spaw_lis(listas* lista,int pos1,int pos2){
-    int A,B,i;
+    int* A,*B,i;
     Nodo* aux;
 
-    A=oten_ele_lista(lista,pos1 );
-    B=oten_ele_lista(lista,pos2 );
+    if( pos1 <= 1 || pos2 <= 1 || pos1 >= lista->longui || pos2 >= lista->longui){
 
-    aux=lista->cabeza;
+        A = oten_ele_lista(lista,pos1 );
+        B = oten_ele_lista(lista,pos2 );
 
-    for(i=1;i<pos1;i++){
-        aux=aux->next;
+        aux=lista->cabeza;
+
+        for(i=1;i<pos1;i++){
+            aux=aux->next;
+        }
+
+        aux->dato=(*B);
+        aux=lista->cabeza;
+
+        for(i=1;i<pos2;i++){
+            aux=aux->next;
+        }
+
+        aux->dato=(*A);
+
     }
-
-    aux->dato=B;
-    aux=lista->cabeza;
-
-    for(i=1;i<pos2;i++){
-        aux=aux->next;
-    }
-
-    aux->dato=A;
-
 }
 
 //veltea la lista A y la copia en B
@@ -156,57 +149,61 @@ void vaciar_one(listas* lista){
 void vaciar_ulti(listas* lista){
     Nodo* aux;
 
-    if(lista->cabeza->next==NULL){
+    aux=lista->cabeza;
 
-        free(lista->cabeza);
-        lista->cabeza = NULL;
-        lista->longui--;
+    if(lista->cabeza != NULL){
 
-    }else {
-        aux=lista->cabeza;
-        while (aux->next->next != NULL) {
+        if(lista->cabeza->next != NULL){
 
-            aux=aux->next;
+            while (aux->next->next != NULL) {
+
+                aux=aux->next;
+
+            }
+
+            free(aux->next);
+            aux->next=NULL;
+            lista->longui--;
+
+        }else {
+
+            free(lista->cabeza);
+            lista->cabeza = NULL;
+            lista->longui--;
 
         }
-
-        free(aux->next);
-        aux->next=NULL;
-        lista->longui--;
-
     }
 }
 
 // borra en la posicion elgida
 
 void vaciar_posi(listas* lista,int pos){
+    Nodo* aux,*aux2;
+    int i;
 
-    if(pos <= lista->longui && pos>0){
+    aux = lista->cabeza;
 
-        if(pos==1){
+    if(lista->cabeza != NULL){
+
+        if(pos == 0){
+
             vaciar_one(lista);
-        }else if(pos==lista->longui){
-            vaciar_ulti(lista);
-        }else {
-            Nodo* aux,*aux2;
-            int i;
-            aux=lista->cabeza;
 
-            for(i=1;i<pos-1;i++){
+        }else if (pos <= lista->longui){
 
-                aux=aux->next;
+            while ( i < pos-1 && aux->next != NULL) {
+
+                aux = aux->next;
+                i++;
 
             }
 
-            aux2=aux->next;
-            aux->next=aux2->next;
+            aux2 = aux->next;
+            aux->next = aux2->next;
             free(aux2);
             lista->longui--;
 
         }
-
-    }else if(pos > lista->longui){
-        vaciar_one(lista);
     }
 }
 
@@ -245,13 +242,13 @@ int esta_en_lista(listas* lista,int dato){
 
     aux=lista->cabeza;
 
-    while (aux!=NULL) {
+    while (aux != NULL) {
 
         cont++;
-        if(dato==aux->dato){
+        if(dato == aux->dato){
 
-            esta=cont;
-            aux=NULL;
+            esta = cont;
+            aux = NULL;
 
         }else {
 
@@ -265,23 +262,25 @@ int esta_en_lista(listas* lista,int dato){
 
 //dada una posicion devuelve el elemento de se posicion, si no este posicion devuelve -1
 
-int oten_ele_lista(listas* lista,int pos){
-    int dato = -1,i;
+int* oten_ele_lista(listas* lista,int pos){
+    int* dato = NULL,i;
     Nodo* aux;
 
     aux=lista->cabeza;
 
-        if(pos<=lista->longui && pos>0){
+    if(lista->cabeza != NULL){
 
-            for(i=1;i<pos;i++){
+        while ( i < pos && aux->next != NULL) {
 
-                aux=aux->next;
-
-            }
-
-            dato=aux->dato;
+            aux = aux->next;
+            i++;
 
         }
+
+        if(i==pos){
+            (*dato)=aux->dato;
+        }
+    }
 
     return dato;
 }
