@@ -4,7 +4,7 @@
 #include <stdbool.h>
 
 Pilas* crear_pila(){
-    Pilas* pila = (Pilas*)malloc(sizeof(Nodo));
+    Pilas* pila = (Pilas*)malloc(sizeof(Pilas));
     pila->tope = NULL;
     return pila;
 
@@ -59,14 +59,10 @@ int octen_tope(Pilas* pila){
 }
 
 void elimi_pila(Pilas* pila){
-    Nodo* aux;
 
-    aux=pila->tope;
+    while (pila->tope != NULL) {
 
-    while (aux!=NULL) {
-        pila->tope=aux->next;
-        free(aux);
-        aux=pila->tope;
+        desapilar(pila);
 
     }
 

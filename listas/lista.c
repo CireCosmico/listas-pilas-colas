@@ -306,16 +306,11 @@ void impri_lista(listas* lista){
 //elimina toda la lista
 
 void elimi_lista(listas* lista){
-    Nodo* aux;
-    aux=lista->cabeza;
 
-    while (aux!=NULL) {
-        lista->cabeza=aux->next;
-        free(aux);
-        aux=lista->cabeza;
+    while (lista->cabeza != NULL) {
+
+        vaciar_one(lista);
 
     }
-
-    lista->longui = 0;
 
 }
