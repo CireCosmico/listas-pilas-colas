@@ -28,10 +28,13 @@ void apilar(Pilas* pila,int valor){
 void desapilar(Pilas* pila){
     Nodo* aux;
 
-    aux=pila->tope;
-    pila->tope=pila->tope->next;
-    free(aux);
+    if(pila->tope != NULL){
 
+        aux=pila->tope;
+        pila->tope=pila->tope->next;
+        free(aux);
+
+    }
 }
 
 bool es_vacia_pila(Pilas* pila){
@@ -51,11 +54,16 @@ bool es_vacia_pila(Pilas* pila){
 }
 
 int octen_tope(Pilas* pila){
-    int tope;
+    int tope = -1;
 
-    tope=pila->tope->dato;
+    if (pila->tope != NULL) {
+
+        tope=pila->tope->dato;
+
+    }
 
     return tope;
+
 }
 
 void elimi_pila(Pilas* pila){
@@ -65,5 +73,7 @@ void elimi_pila(Pilas* pila){
         desapilar(pila);
 
     }
+
+    free(pila);
 
 }

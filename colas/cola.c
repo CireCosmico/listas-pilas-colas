@@ -39,18 +39,21 @@ void encolar(Colas* cola,int valor){
 void desencolar(Colas* cola){
     Nodo* aux;
 
-    if (cola->primero == cola->ultimo) {
+    if (!es_vacia_cola(cola)) {
 
-        free(cola->primero);
-        cola->primero = NULL;
-        cola->ultimo = NULL;
+        if (cola->primero == cola->ultimo) {
 
-    }else {
+            free(cola->primero);
+            cola->primero = NULL;
+            cola->ultimo = NULL;
 
-        aux = cola->primero;
-        cola->primero = cola->primero->next;
-        free(aux);
+        }else {
 
+            aux = cola->primero;
+            cola->primero = cola->primero->next;
+            free(aux);
+
+        }
     }
 }
 
@@ -67,10 +70,14 @@ int octe_primaro_cola(Colas* cola){
 }
 
 int despacho(Colas* cola){
-    int pri;
+    int pri = -1;
 
-    pri = octe_primaro_cola(cola);
-    desencolar(cola);
+    if(!es_vacia_cola(cola)){
+
+        pri = octe_primaro_cola(cola);
+        desencolar(cola);
+
+    }
 
     return pri;
 }
@@ -78,7 +85,7 @@ int despacho(Colas* cola){
 bool es_vacia_cola(Colas* cola){
     bool es= false;
 
-    if(cola->primero != NULL){
+    if(cola->primero == NULL){
 
         es = true;
 
@@ -94,4 +101,7 @@ void elim_cola(Colas* cola){
         desencolar(cola);
 
     }
+
+    free(cola);
+
 }
