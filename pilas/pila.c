@@ -74,6 +74,4 @@ void elimi_pila(Pilas* pila){
 
     }
 
-    free(pila);
-
 }

@@ -102,6 +102,4 @@ void elim_cola(Colas* cola){
 
     }
 
-    free(cola);
-
 }

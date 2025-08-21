@@ -2,3 +2,5 @@ listas/lista.o
 listas/prue
 pilas/pila.o
 pilas/prue
+colas/cola.o
+colas/prue
