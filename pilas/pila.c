@@ -6,8 +6,8 @@
 Pilas* crear_pila(){
     Pilas* pila = (Pilas*)malloc(sizeof(Pilas));
     pila->tope = NULL;
+    pila->longui = 0;
     return pila;
-
 }
 
 Nodo* crear_nodo(int info){
@@ -17,13 +17,18 @@ Nodo* crear_nodo(int info){
     return nodo;
 }
 
+// pone el elemento en la cima de la pila
+
 void apilar(Pilas* pila,int valor){
     Nodo* nodo = crear_nodo(valor);
 
     nodo->next=pila->tope;
     pila->tope=nodo;
+    pila->longui++;
 
 }
+
+// quita el elemento que esta en el tope pero no lo devuelve
 
 void desapilar(Pilas* pila){
     Nodo* aux;
@@ -33,9 +38,19 @@ void desapilar(Pilas* pila){
         aux=pila->tope;
         pila->tope=pila->tope->next;
         free(aux);
+        pila->longui--;
 
     }
 }
+
+// devuelve la longuitu de la pila
+
+int longui_pila(Pilas* pila){
+
+    return pila->longui;
+}
+
+// verifica de es vacia la pila
 
 bool es_vacia_pila(Pilas* pila){
     bool es;
@@ -53,6 +68,8 @@ bool es_vacia_pila(Pilas* pila){
     return es;
 }
 
+// devuelve el tope de la pila mas no lo elimina
+
 int octen_tope(Pilas* pila){
     int tope = -1;
 
@@ -65,6 +82,8 @@ int octen_tope(Pilas* pila){
     return tope;
 
 }
+
+//elimina todos los elemento de la pila
 
 void elimi_pila(Pilas* pila){
 

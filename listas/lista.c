@@ -18,7 +18,7 @@ Nodo* crear_nodo(int info){
     return nodo;
 }
 
-//introduce en la primera posicion
+//introduce en la lista en la primera posicion
 
 void inset_one(listas* lista,int valor){
 
@@ -30,7 +30,7 @@ void inset_one(listas* lista,int valor){
 
 }
 
-//introduce en la ultima posicion
+//introduce en la lista en la ultima posicion
 
 void inset_ulti(listas* lista,int valor){
     Nodo* nodo = crear_nodo(valor);
@@ -55,7 +55,7 @@ void inset_ulti(listas* lista,int valor){
 
 }
 
-//introduce en la posicion elejida
+//introduce en la lista en la posicion elejida
 
 void inset_posi(listas* lista,int valor, int pos){
     Nodo* nodo = crear_nodo(valor);
@@ -98,7 +98,7 @@ void inset_posi(listas* lista,int valor, int pos){
     }
 }
 
-// intercambia 2 posiciones
+// intercambia 2 posiciones en la lista, util para el metodo de ordenamiento
 
 void spaw_lis(listas* lista,int pos1,int pos2){
     int A,B,i;
@@ -127,7 +127,7 @@ void spaw_lis(listas* lista,int pos1,int pos2){
     }
 }
 
-//veltea la lista A y la copia en B
+//veltea la lista A y la copia en B, sin destruir la lista A, (si quieres asegurar que la lista B este vacia solo usa el elimi_lista)
 
 listas* voltear_lista(listas* Orlista,listas* Inlista){
     Nodo* aux;
@@ -144,7 +144,7 @@ listas* voltear_lista(listas* Orlista,listas* Inlista){
 
 }
 
-// borra en la primera posicion
+// borra en la primera posicion en la lista
 
 void vaciar_one(listas* lista){
     Nodo* aux;
@@ -159,7 +159,7 @@ void vaciar_one(listas* lista){
     }
 }
 
-// borra en la ultima posicion
+// borra en la ultima posicion en la lista
 
 void vaciar_ulti(listas* lista){
     Nodo* aux;
@@ -190,17 +190,17 @@ void vaciar_ulti(listas* lista){
     }
 }
 
-// borra en la posicion elgida
+// borra en la posicion elgida de la lista
 
 void vaciar_posi(listas* lista,int pos){
 
-    if(pos <= lista->longui && pos>0){
+    if(pos <= lista->longui && pos > 0){
 
-        if(pos==1){
+        if(pos == 1){
 
             vaciar_one(lista);
 
-        }else if(pos==lista->longui){
+        }else if(pos == lista->longui){
 
             vaciar_ulti(lista);
 
@@ -209,9 +209,9 @@ void vaciar_posi(listas* lista,int pos){
             Nodo* aux,*aux2;
             int i;
 
-            aux=lista->cabeza;
+            aux = lista->cabeza;
 
-            for(i=1;i<pos-1;i++){
+            for(i = 1;i < pos-1;i++){
 
                 aux=aux->next;
 
@@ -236,7 +236,7 @@ void vaciar_posi(listas* lista,int pos){
 
 bool es_vacia_lista(listas* lista){
     bool es;
-    if(lista->cabeza==NULL){
+    if(lista->cabeza == NULL){
 
         es=true;
 
@@ -252,11 +252,8 @@ bool es_vacia_lista(listas* lista){
 //te dice la longuitu de la lista
 
 int lon_lista(listas* lista){
-    int lon;
 
-    lon=lista->longui;
-
-    return lon;
+    return lista->longui;
 }
 
 //te dice si un elemento esta en la lista devolviendo posicion y si no esta devuelve -1
@@ -267,15 +264,16 @@ int esta_en_lista(listas* lista,int dato){
 
     aux=lista->cabeza;
 
-    while (aux!=NULL) {
+    while (aux != NULL) {
 
         cont++;
 
-        if(dato==aux->dato){
+        if(dato == aux->dato){
 
-            esta=cont;
+            esta = cont;
 
-            aux=NULL;  // Esto rompe el bucle
+            aux = NULL;  // Esto rompe el bucle
+
         }else {
 
             aux=aux->next;
@@ -288,7 +286,7 @@ int esta_en_lista(listas* lista,int dato){
 
 }
 
-//dada una posicion devuelve el elemento de se posicion, si no este posicion devuelve -1
+//dada una posicion devuelve el elemento de se posicion, si la posicion es invalida devuelve -1
 
 int oten_ele_lista(listas* lista,int pos){
     int dato = -1,i;
@@ -296,7 +294,7 @@ int oten_ele_lista(listas* lista,int pos){
 
     aux=lista->cabeza;
 
-    if(pos<=lista->longui && pos>0){
+    if(pos <= lista->longui && pos > 0){
 
         for(i=1;i<pos;i++){
 
@@ -312,7 +310,7 @@ int oten_ele_lista(listas* lista,int pos){
 
 }
 
-//imprime toda la lista
+//imprime toda la lista por pantalla
 
 void impri_lista(listas* lista){
     Nodo* aux;
@@ -329,7 +327,7 @@ void impri_lista(listas* lista){
     }
 }
 
-//elimina toda la lista
+//elimina todos los elemento de la lista
 
 void elimi_lista(listas* lista){
 

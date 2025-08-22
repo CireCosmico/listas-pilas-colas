@@ -10,15 +10,18 @@ int main(){
     encolar(cola,8 );
     encolar(cola,10 );
 
-    printf("primero de la cola %d \n",octe_primaro_cola(cola));
+    printf("primero de la cola %d y su longuitu es de %d \n",octe_primaro_cola(cola),longui_cola(cola));
 
     desencolar(cola);
 
-    printf("primero de la cola %d \n",octe_primaro_cola(cola));
+    printf("primero de la cola %d y su longuitu es de %d \n",octe_primaro_cola(cola),longui_cola(cola));
 
     desencolar(cola);
 
-    elim_cola(cola);
+    printf("primero de la cola %d y su longuitu es de %d \n",octe_primaro_cola(cola),longui_cola(cola));
+
+
+    desencolar(cola);
 
     if(es_vacia_cola(cola)){
 

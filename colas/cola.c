@@ -8,6 +8,7 @@ Colas* crear_cola(){
     Colas* cola = (Colas*)malloc(sizeof(Colas));
     cola->primero = NULL;
     cola->ultimo = NULL;
+    cola->longui = 0;
     return cola;
 
 }
@@ -19,6 +20,8 @@ Nodo* crear_nodo(int info){
     return nodo;
 }
 
+// pone el elemento al fianl de la cola
+
 void encolar(Colas* cola,int valor){
     Nodo* nodo =crear_nodo(valor);
 
@@ -26,15 +29,19 @@ void encolar(Colas* cola,int valor){
 
         cola->primero = nodo;
         cola->ultimo = nodo;
+        cola->longui++;
 
     }else {
 
         cola->ultimo->next=nodo;
         cola->ultimo = nodo;
+        cola->longui++;
 
     }
 
 }
+
+// quita el primer elemento de la cola mas no devuelve el elemento
 
 void desencolar(Colas* cola){
     Nodo* aux;
@@ -46,16 +53,20 @@ void desencolar(Colas* cola){
             free(cola->primero);
             cola->primero = NULL;
             cola->ultimo = NULL;
+            cola->longui--;
 
         }else {
 
             aux = cola->primero;
             cola->primero = cola->primero->next;
             free(aux);
+            cola->longui--;
 
         }
     }
 }
+
+// te da el primer elemento de cola mas no lo quita, si la cola esta vacia devuelve -1
 
 int octe_primaro_cola(Colas* cola){
     int pri = -1;
@@ -68,6 +79,8 @@ int octe_primaro_cola(Colas* cola){
 
     return pri;
 }
+
+// te da el primer elenento de la cola y lo quita, si la cola esta vacia devuelve -1
 
 int despacho(Colas* cola){
     int pri = -1;
@@ -82,6 +95,15 @@ int despacho(Colas* cola){
     return pri;
 }
 
+// devuelve la longuitu de la cola
+
+int longui_cola(Colas* cola){
+
+    return cola->longui;
+}
+
+// de dice si es vavia la cola
+
 bool es_vacia_cola(Colas* cola){
     bool es= false;
 
@@ -93,6 +115,8 @@ bool es_vacia_cola(Colas* cola){
 
     return es;
 }
+
+// elimina todos los elemento de la cola
 
 void elim_cola(Colas* cola){
 
