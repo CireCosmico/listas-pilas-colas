@@ -338,3 +338,67 @@ void elimi_lista(listas* lista){
     }
 
 }
+
+void ordena(listas* lista){
+    int i,j, mini ,lon = lon_lista(lista);
+
+    for(i = 0; i <= lon-1;i++){
+
+        mini = i;
+        int elemento_mini = oten_ele_lista(lista, i );
+
+        for (j = i+1; j <= lon ; j++ ) {
+            int elemento_compa = oten_ele_lista(lista, j );
+
+            if(elemento_compa < elemento_mini){
+
+                elemento_compa = elemento_mini;
+
+                mini = j;
+
+            }
+        }
+
+        if(i != mini){
+
+            spaw_lis(lista,i ,mini );
+
+        }
+
+    }
+
+}
+
+
+
+/*void alfavetordena(listas* lista){
+    int i,j, mini ,lon = lon_lista(lista);
+
+    for(i = 0; i <= lon-1;i++){
+
+        mini = i;
+        cancion mini_nodo = oten_ele_lista(lista, i );
+
+        for (j = i+1; j <= lon ; j++ ) {
+            cancion con_nodo = oten_ele_lista(lista, j );
+
+            if(strcmp(con_nodo.titu,mini_nodo.titu ) < 0){
+
+                strcpy(mini_nodo.titu,con_nodo.titu );
+                strcpy(mini_nodo.art,con_nodo.art );
+                mini_nodo.dura = con_nodo.dura;
+
+                mini = j;
+
+            }
+        }
+
+        if(i != mini){
+
+            spaw_lis(lista,i ,mini );
+
+        }
+
+    }
+
+}*/

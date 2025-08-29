@@ -39,5 +39,7 @@ int esta_en_lista(listas* lista,int dato);
 int oten_ele_lista(listas* lista,int pos);
 void impri_lista(listas* lista);
 void elimi_lista(listas* lista);
+void ordena(listas* lista);
+//void alfavetordena(listas* lista);
 
 #endif
