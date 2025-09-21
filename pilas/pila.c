@@ -43,6 +43,21 @@ void desapilar(Pilas* pila){
     }
 }
 
+//invertir pila,se necesitas 2 pilas y ambas pilas tiene que estar creadas
+
+void inver_pila(Pilas* pila1,Pilas* pila2){
+    int aux;
+
+    while(!es_vacia_pila(pila1)){
+
+        aux = octen_tope(pila1);
+        desapilar(pila1);
+        apilar(pila2,aux );
+
+    }
+
+}
+
 // devuelve la longuitu de la pila
 
 int longui_pila(Pilas* pila){

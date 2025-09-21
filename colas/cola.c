@@ -127,3 +127,15 @@ void elim_cola(Colas* cola){
     }
 
 }
+
+// invertir cola, se invirte la misma cola
+
+void inver_cola(Colas* cola){
+
+    Nodo* aux;
+
+    aux = cola->ultimo;
+    cola->ultimo = cola->primero;
+    cola->primero = aux;
+
+}

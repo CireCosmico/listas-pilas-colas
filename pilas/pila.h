@@ -27,6 +27,7 @@ Pilas* crear_pila();
 Nodo* crear_nodo(int info);
 void apilar(Pilas* pila,int valor);
 void desapilar(Pilas* pila);
+void inver_pila(Pilas* pila1,Pilas* pila2);
 int longui_pila(Pilas* pila);
 bool es_vacia_pila(Pilas* pila);
 int octen_tope(Pilas* pila);

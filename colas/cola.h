@@ -33,5 +33,6 @@ int despacho(Colas* cola);
 int longui_cola(Colas* cola);
 bool es_vacia_cola(Colas* cola);
 void elim_cola(Colas* cola);
+void inver_cola(Colas* cola);
 
 #endif

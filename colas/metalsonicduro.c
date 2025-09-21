@@ -12,7 +12,7 @@ int main(){
 
     printf("primero de la cola %d y su longuitu es de %d \n",octe_primaro_cola(cola),longui_cola(cola));
 
-    desencolar(cola);
+    /*desencolar(cola);
 
     printf("primero de la cola %d y su longuitu es de %d \n",octe_primaro_cola(cola),longui_cola(cola));
 
@@ -31,8 +31,11 @@ int main(){
 
         printf("no es vacia\n");
 
-    }
+    }*/
 
+    inver_cola(cola);
+
+    printf("primero de la cola %d y su longuitu es de %d \n",octe_primaro_cola(cola),longui_cola(cola));
 
     return 0;
 }
