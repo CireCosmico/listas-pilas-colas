@@ -3,6 +3,7 @@
 #include <stdbool.h>
 
 int main(){
+    //prue
 
     Pilas* pila = crear_pila();
     Pilas* pila2 = crear_pila();
